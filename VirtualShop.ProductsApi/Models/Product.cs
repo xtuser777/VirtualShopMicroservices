@@ -10,5 +10,5 @@ public class Product
     public string? ImageUrl { get; set; }
 
     public int CategoryId { get; set; }
-    public Category? Categpry { get; set; }
+    public Category? Category { get; set; }
 }
