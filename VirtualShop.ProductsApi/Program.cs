@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using VirtualShop.ProductsApi.Context;
+using VirtualShop.ProductsApi.Repositories;
+using VirtualShop.ProductsApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,11 @@ var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<ProductsApiContext>(o => o.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 
